@@ -1,0 +1,70 @@
+{% extends 'sandesh_news_time/basic.html' %}
+{% block css %}
+
+.second{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+}
+a{
+  text-decoration: none;
+}
+
+
+
+{% endblock %}
+{% block body %}
+
+
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{ message }}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+
+
+<div class="conatiner">
+<div class="container my-5">
+  <h1></h1>
+    <h4>Choose Category</h4>
+    <form action="/news/" method="get">
+      <div class="form-group">
+        <input type="text" class="form-control" id="topic" placeholder="Search Topic Here!" name="category">
+      </div>
+      <button type="submit" class="btn btn-primary">Taste The Latest Scoop</button>
+    </form>
+  </div>
+
+
+
+    {% if newslist %}
+    <div class="row justify-content-center">
+      <h1>Up-to-the-Minute Report(Top Headlines on {{ cat }})</h1>
+    </div>
+    {% for news_item in newslist %}
+    <div class="container">
+    <div class="second container my-5">
+      <hr>
+      <div class="row justify-content-center">
+      <h2 class="text-center">{{ news_item.title }}</h2>
+      <img src="{{ news_item.n_image }}" alt="" width="900px">
+      <p>{{ news_item.n_desc }}<a href="{{ news_item.n_url }}">Readmore</a></p>
+    </div>
+  </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h1>{{ warn_message }}</h1>
+    {% endif %}
+  </div>
+  
+  
+{% endblock %}
+    
