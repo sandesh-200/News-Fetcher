@@ -19,7 +19,7 @@ def news(request):
         newslist = []
         category = request.GET.get('category', "")
         if len(category)>0:
-            r = requests.get(f'https://newsapi.org/v2/everything?q={category}&from=2023-12-26&sortBy=publishedAt&language=en&apiKey=c92cbf9982c0481eb88731c590acafad')
+            r = requests.get(f'https://newsapi.org/v2/everything?q={category}&from=2024-03-28&sortBy=publishedAt&apiKey=c92cbf9982c0481eb88731c590acafad')
             c_status = r.status_code
             print(c_status)
             khabar = json.loads(r.text)
@@ -39,3 +39,5 @@ def news(request):
         
     
     return render(request, 'sandesh_news_time/news.html',{"title":news_title,"n_desc":news_desc,"newslist":newslist, "n_image":news_img, 'cat':category, 'n_url':news_url})
+
+
